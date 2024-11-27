@@ -1,9 +1,11 @@
 from app.models import Question, UserScore
 from app import db
+import random
 
-def get_all_questions():
+def get_all_questions(number_of_questions=3):
     """Pobiera wszystkie pytania z bazy danych."""
-    return Question.query.all()
+    questions = Question.query.all()
+    return random.sample(questions, min(number_of_questions, len(questions)))
 
 def save_user_score(username, score):
     """Zapisuje wynik użytkownika."""
